@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Created by chakrabhandari on 22/04/2017.
  */
-@Configuration
+//@Configuration
 public class WebConfig {
 
     @Bean
