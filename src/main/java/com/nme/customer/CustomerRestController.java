@@ -28,7 +28,6 @@ public class CustomerRestController {
 
     @PostMapping("/customer")
     public Customer updateCustomer(@RequestBody Customer customer) {
-
         if (null == customer.getCustomerId()) { // if new customer
             try {
                 Double customerId = (Double) NMEUtils.getNextSequence("customerId");
