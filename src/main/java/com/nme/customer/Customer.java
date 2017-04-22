@@ -21,6 +21,8 @@ public class Customer {
     @Id
     private Long customerId;
 
+    private Long userId;
+
     private String firstName;
 
     private String middleName;
@@ -136,4 +138,11 @@ public class Customer {
         this.driverlicense = driverlicense;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }

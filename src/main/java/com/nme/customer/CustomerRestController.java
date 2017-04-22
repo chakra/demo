@@ -21,9 +21,9 @@ public class CustomerRestController {
         return customerRepository.findAll();
     }
 
-    @RequestMapping("/customer/id/{customerId}")
-    public Customer getCustomer(@PathVariable Long customerId) {
-        return customerRepository.findOne(customerId);
+    @RequestMapping("/customer/id/{userId}")
+    public Customer getCustomer(@PathVariable Long userId) {
+        return customerRepository.findOne(userId);
     }
 
     @PostMapping("/customer")
