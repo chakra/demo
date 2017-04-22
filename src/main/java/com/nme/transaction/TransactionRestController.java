@@ -1,6 +1,7 @@
 package com.nme.transaction;
 
 import com.nme.repository.CustomerRepository;
+import com.nme.repository.TransactionRepository;
 import com.nme.utils.NMEUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

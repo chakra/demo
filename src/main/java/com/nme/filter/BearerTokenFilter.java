@@ -3,6 +3,8 @@ package com.nme.filter;
 /**
  * Created by chakrabhandari on 22/04/2017.
  */
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
@@ -16,6 +18,8 @@ import java.util.Enumeration;
 
 public class BearerTokenFilter implements Filter {
 
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -23,7 +27,7 @@ public class BearerTokenFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("Greetings from filter!");
+        log.info("#### request = " + servletRequest.getRemoteHost());
 
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
         Enumeration<String> headerNames = httpRequest.getHeaderNames();
@@ -38,21 +42,15 @@ public class BearerTokenFilter implements Filter {
         headers.add("Authorization", String.format("%s %s", "Bearer ", httpRequest.getHeader("Authorization") ));
         headers.add("Content-Type", "application/json");
 
-
-
         RestTemplate restTemplate = new RestTemplate();
-        //restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-
-        //HttpEntity<String> request = new HttpEntity<String>(createOrder, headers);
-
-        //HttpEntity<String> request = new HttpEntity<String>("https://obscure-fjord-89635.herokuapp.com/api/secure");
-
 
         ResponseEntity<String> result = restTemplate.exchange(
                 "https://obscure-fjord-89635.herokuapp.com/api/secure",
                 HttpMethod.GET, null, String.class);
 
         System.out.println("#### get response = " + result);
+
+        log.info("#### get response = " + result);
 
         filterChain.doFilter(servletRequest, servletResponse);
     }
