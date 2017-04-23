@@ -17,7 +17,7 @@ public class WebConfig {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setName("greeting");
         BearerTokenFilter greetingFilter = new BearerTokenFilter();
-        registrationBean.setFilter(greetingFilter);
+        //registrationBean.setFilter(greetingFilter);
         registrationBean.setOrder(1);
         return registrationBean;
     }
